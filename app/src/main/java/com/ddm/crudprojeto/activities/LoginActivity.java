@@ -38,10 +38,14 @@ public class LoginActivity extends AppCompatActivity {
         RetrofitService.getServico(this).login(dtoLogin).enqueue(new Callback<DtoLogin>() {
             @Override
             public void onResponse(Call<DtoLogin> call, Response<DtoLogin> response) {
+                String token = response.body().getToken();
                 Toast.makeText(LoginActivity.this, "Usuário logado", Toast.LENGTH_SHORT).show();
-                SharedPreferences sp = getSharedPreferences("teste", 0);
+
+                SharedPreferences sp = getSharedPreferences("dados", 0);
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString("token", response.body().getToken());
+                editor.putString("token", token);
+                editor.apply();
+
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
