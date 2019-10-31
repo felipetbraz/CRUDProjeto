@@ -15,6 +15,12 @@ public class DtoUser {
         this.phone = phone;
     }
 
+    public DtoUser(String email, String name, String phone) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
